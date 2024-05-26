@@ -8,8 +8,8 @@ namespace FirmaDB_Migration.Models
     [Key]
     public int Id { get; set; }
 
-    [ForeignKey(nameof(Models.Employee.Id))]
-    public Employee Employee { get; set; }
+    [ForeignKey(nameof(Employee.Id))]
+    public int EmployeeId { get; set; }
 
     public string AccessLevels { get; set; }
   }

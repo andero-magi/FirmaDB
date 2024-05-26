@@ -11,7 +11,7 @@ namespace FirmaDB_Migration.Models
     [Column(TypeName = "varchar(50)")]
     public string Name { get; set; }
 
-    [ForeignKey(nameof(Models.Employee.Id))]
-    public Employee Employee { get; set; }
+    [ForeignKey(nameof(Employee.Id))]
+    public int EmployeeId { get; set; }
   }
 }

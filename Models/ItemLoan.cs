@@ -7,12 +7,12 @@ namespace FirmaDB_Migration.Models
   {
     [Key]
     public int Id { get; set; }
-    
-    [ForeignKey(nameof(Models.Employee.Id))]
-    public Employee Employee { get; set; }
 
-    [ForeignKey(nameof(Models.Item.Id))]
-    public Item Item { get; set; }
+    [ForeignKey(nameof(Employee.Id))]
+    public int EmployeeId { get; set; }
+
+    [ForeignKey(nameof(Item.Id))]
+    public int ItemId { get; set; }
 
     public DateTime LoanDate { get; set; }
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirmaDB_Migration.Migrations
 {
     [DbContext(typeof(FirmaDbContext))]
-    [Migration("20240526150244_Initial")]
+    [Migration("20240526151931_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,13 +27,22 @@ namespace FirmaDB_Migration.Migrations
             modelBuilder.Entity("FirmaDB_Migration.Models.AccessPermission", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AccessLevels")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
 
                     b.ToTable("AccessPermissions");
                 });
@@ -58,6 +67,12 @@ namespace FirmaDB_Migration.Migrations
             modelBuilder.Entity("FirmaDB_Migration.Models.Child", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -72,6 +87,8 @@ namespace FirmaDB_Migration.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Children");
                 });
@@ -114,16 +131,25 @@ namespace FirmaDB_Migration.Migrations
             modelBuilder.Entity("FirmaDB_Migration.Models.HealthCheck", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CheckDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Results")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
 
                     b.ToTable("HealthChecks");
                 });
@@ -160,11 +186,20 @@ namespace FirmaDB_Migration.Migrations
             modelBuilder.Entity("FirmaDB_Migration.Models.ItemLoan", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("LoanDate")
                         .HasColumnType("datetime2");
@@ -174,17 +209,27 @@ namespace FirmaDB_Migration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ItemId");
+
                     b.ToTable("Loans");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.LeaveRequest", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -194,19 +239,32 @@ namespace FirmaDB_Migration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("LeaveRequests");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Message", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecieverId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Messages");
                 });
@@ -214,7 +272,10 @@ namespace FirmaDB_Migration.Migrations
             modelBuilder.Entity("FirmaDB_Migration.Models.SickLeave", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Days")
                         .HasColumnType("int");
@@ -223,6 +284,9 @@ namespace FirmaDB_Migration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -231,12 +295,20 @@ namespace FirmaDB_Migration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("SickLeaves");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Title", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -245,15 +317,24 @@ namespace FirmaDB_Migration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
                     b.ToTable("Titles");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Vacation", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -268,114 +349,94 @@ namespace FirmaDB_Migration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("Vacations");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.AccessPermission", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithOne("AccessPermission")
-                        .HasForeignKey("FirmaDB_Migration.Models.AccessPermission", "Id")
+                        .HasForeignKey("FirmaDB_Migration.Models.AccessPermission", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Child", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("Children")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.HealthCheck", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithOne("HealthCheck")
-                        .HasForeignKey("FirmaDB_Migration.Models.HealthCheck", "Id")
+                        .HasForeignKey("FirmaDB_Migration.Models.HealthCheck", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.ItemLoan", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("Loans")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FirmaDB_Migration.Models.Item", "Item")
+                    b.HasOne("FirmaDB_Migration.Models.Item", null)
                         .WithMany("Loans")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.LeaveRequest", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("LeaveRequests")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Message", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Reciever")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("Messages")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reciever");
+                        .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.SickLeave", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("SickLeaves")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Title", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithOne("Title")
-                        .HasForeignKey("FirmaDB_Migration.Models.Title", "Id")
+                        .HasForeignKey("FirmaDB_Migration.Models.Title", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Vacation", b =>
                 {
-                    b.HasOne("FirmaDB_Migration.Models.Employee", "Employee")
+                    b.HasOne("FirmaDB_Migration.Models.Employee", null)
                         .WithMany("Vacations")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FirmaDB_Migration.Models.Employee", b =>
