@@ -11,6 +11,7 @@ namespace FirmaDB_Migration.Models
     [ForeignKey(nameof(Models.Employee.Id))]
     public Employee Employee { get; set; }
 
+    [ForeignKey(nameof(Models.Item.Id))]
     public Item Item { get; set; }
 
     public DateTime LoanDate { get; set; }
