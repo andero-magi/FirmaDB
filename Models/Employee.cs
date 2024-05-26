@@ -24,11 +24,11 @@ namespace FirmaDB_Migration.Models
 
     public int VacationDaysBalance { get; set; }
 
-    public List<Child> Children { get; set; }
+    public virtual List<Child> Children { get; set; }
 
-    public List<LeaveRequest> LeaveRequests { get; set; }
+    public virtual List<LeaveRequest> LeaveRequests { get; set; }
 
-    public List<ItemLoan> Loans { get; set; }
+    public virtual List<ItemLoan> Loans { get; set; }
 
     public virtual Title Title { get; set; }
   }
