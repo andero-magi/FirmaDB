@@ -14,5 +14,7 @@ namespace FirmaDB_Migration.Data
 
     DbSet<Employee> Employees { get; set; }
     DbSet<Child> Children { get; set; }
+
+    DbSet<Item> Items { get; set; }
   }
 }
