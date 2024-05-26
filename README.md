@@ -1,4 +1,4 @@
 # FirmaDB
 
 Generated Database image:
-[](/erd-screenshot.png)
+[ScreenShot](/erd-screenshot.png)
