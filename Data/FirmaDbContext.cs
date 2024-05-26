@@ -20,5 +20,7 @@ namespace FirmaDB_Migration.Data
     DbSet<ItemLoan> Loans { get; set; }
 
     DbSet<LeaveRequest> LeaveRequests { get; set; }
+    
+    DbSet<Title> Titles { get; set; }
   }
 }

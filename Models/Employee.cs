@@ -29,5 +29,7 @@ namespace FirmaDB_Migration.Models
     public List<LeaveRequest> LeaveRequests { get; set; }
 
     public List<ItemLoan> Loans { get; set; }
+
+    public virtual Title Title { get; set; }
   }
 }
