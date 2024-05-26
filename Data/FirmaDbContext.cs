@@ -31,5 +31,7 @@ namespace FirmaDB_Migration.Data
     DbSet<SickLeave> SickLeaves { get; set; }
 
     DbSet<AccessPermission> AccessPermissions { get; set; }
+
+    DbSet<Appeal> Appeals { get; set; }
   }
 }
