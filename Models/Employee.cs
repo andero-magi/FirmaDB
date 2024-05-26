@@ -37,5 +37,7 @@ namespace FirmaDB_Migration.Models
     public virtual HealthCheck HealthCheck { get; set; }
 
     public virtual List<SickLeave> SickLeaves { get; set; }
+
+    public virtual AccessPermission AccessPermission { get; set; }
   }
 }
