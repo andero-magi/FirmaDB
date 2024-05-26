@@ -27,5 +27,7 @@ namespace FirmaDB_Migration.Data
     DbSet<Vacation> Vacations { get; set; }
 
     DbSet<HealthCheck> HealthChecks { get; set; }
+
+    DbSet<SickLeave> SickLeaves { get; set; }
   }
 }
