@@ -33,5 +33,7 @@ namespace FirmaDB_Migration.Data
     DbSet<AccessPermission> AccessPermissions { get; set; }
 
     DbSet<Appeal> Appeals { get; set; }
+
+    DbSet<Message> Messages { get; set; }
   }
 }

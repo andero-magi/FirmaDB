@@ -39,5 +39,7 @@ namespace FirmaDB_Migration.Models
     public virtual List<SickLeave> SickLeaves { get; set; }
 
     public virtual AccessPermission AccessPermission { get; set; }
+
+    public virtual List<Message> Messages { get; set; }
   }
 }
