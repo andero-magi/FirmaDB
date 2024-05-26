@@ -27,5 +27,7 @@ namespace FirmaDB_Migration.Models
     public List<Child> Children { get; set; }
 
     public List<LeaveRequest> LeaveRequests { get; set; }
+
+    public List<ItemLoan> Loans { get; set; }
   }
 }
