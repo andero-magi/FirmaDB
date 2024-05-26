@@ -25,5 +25,7 @@ namespace FirmaDB_Migration.Models
     public int VacationDaysBalance { get; set; }
 
     public List<Child> Children { get; set; }
+
+    public List<LeaveRequest> LeaveRequests { get; set; }
   }
 }
