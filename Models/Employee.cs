@@ -33,5 +33,7 @@ namespace FirmaDB_Migration.Models
     public virtual Title Title { get; set; }
 
     public virtual List<Vacation> Vacations { get; set; }
+
+    public virtual HealthCheck HealthCheck { get; set; }
   }
 }
