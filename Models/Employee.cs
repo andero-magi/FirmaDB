@@ -31,5 +31,7 @@ namespace FirmaDB_Migration.Models
     public virtual List<ItemLoan> Loans { get; set; }
 
     public virtual Title Title { get; set; }
+
+    public virtual List<Vacation> Vacations { get; set; }
   }
 }
